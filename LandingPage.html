@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Developer Productivity Analyzer</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+overflow:hidden;
+}
+
+/* SPLASH SCREEN */
+
+#splash{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+color:white;
+background:#285943;
+animation:splashFade 1.2s ease;
+z-index:1000;
+}
+
+#splash h1{
+font-size:52px;
+animation:slideUp 1.2s ease;
+}
+
+#splash p{
+margin-top:12px;
+font-size:18px;
+color:#e2e8f0;
+animation:fadeIn 2s ease;
+}
+
+/* LOGIN PAGE */
+
+#loginPage{
+display:none;
+height:100vh;
+width:100%;
+background:#77af9c;
+justify-content:center;
+align-items:center;
+animation:loginFade 1s ease;
+}
+
+/* LOGIN BOX */
+
+.login-box{
+background:white;
+padding:50px 60px;
+border-radius:12px;
+text-align:center;
+color:#111;
+box-shadow:0 20px 40px rgba(0,0,0,0.25);
+animation:popup 0.6s ease;
+}
+
+.login-box p{
+color:#444;
+}
+
+button{
+margin-top:20px;
+padding:12px 30px;
+background:#285943;
+border:none;
+color:white;
+font-size:16px;
+border-radius:8px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#1f4633;
+transform:translateY(-2px);
+}
+
+/* ANIMATIONS */
+
+@keyframes splashFade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+@keyframes slideUp{
+from{
+transform:translateY(60px);
+opacity:0;
+}
+to{
+transform:translateY(0);
+opacity:1;
+}
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+@keyframes loginFade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+@keyframes popup{
+0%{
+transform:scale(0.8);
+opacity:0;
+}
+100%{
+transform:scale(1);
+opacity:1;
+}
+}
+</style>
+</head>
+
+<body>
+
+<!-- SPLASH SCREEN -->
+
+<div id="splash">
+<h1>Developer Productivity Analyzer</h1>
+<p>GitHub Based Coding Analytics Platform</p>
+</div>
+
+<!-- LOGIN PAGE -->
+
+<div id="loginPage">
+<div class="login-box">
+<h2>Login</h2>
+<p>Connect your GitHub account to continue</p>
+<button onclick="githubLogin()">Login with GitHub</button>
+</div>
+</div>
+
+<script>
+
+// show login after splash
+setTimeout(function(){
+document.getElementById("splash").style.display="none";
+document.getElementById("loginPage").style.display="flex";
+},3000);
+
+// GitHub OAuth redirect
+function githubLogin(){
+window.location.href =
+"https://github.com/login/oauth/authorize?client_id=Ov23lilqvqD92kgYVZY9&redirect_uri=http://127.0.0.1:5500/dashboard.html&scope=read:user";
+}
+
+</script>
+
+</body>
+</html>
